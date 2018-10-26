@@ -1,4 +1,4 @@
-connection: "heap_sql_folio_hd"
+connection: "analytics_warehouse"
 
 # include all the views
 include: "*.view"
