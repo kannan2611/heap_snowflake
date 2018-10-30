@@ -3,7 +3,7 @@ view: session_facts {
     sortkeys: ["session_start_time"]
     distribution: "session_unique_id"
     # update trigger value to desired frequency and timezone
-    sql_trigger_value: select date(convert_timezone('pst', getdate() - interval '3 hours')) ;;
+    sql_trigger_value: select date(convert_timezone('pst', current_date() - interval '3 hours')) ;;
     sql: SELECT
         all_events.session_id || '-' || all_events.user_id AS session_unique_id,
         user_id,

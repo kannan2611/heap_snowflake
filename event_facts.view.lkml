@@ -1,7 +1,7 @@
 view: event_facts {
   derived_table: {
     # update trigger value to desired frequency and timezone
-    sql_trigger_value: select date(convert_timezone('pst', getdate() - interval '3 hours')) ;;
+    sql_trigger_value: select date(convert_timezone('pst', current_date() - interval '3 hours')) ;;
     sortkeys: ["event_sequence_number"]
     distribution: "unique_event_id"
     sql: WITH
@@ -10,7 +10,7 @@ view: event_facts {
               event_table_name
               , COUNT(*) AS cardinality
             FROM heap.all_events
-            WHERE TIME > DATEADD('day', - 30, GETDATE())
+            WHERE TIME > DATEADD('day', - 30, current_date())
             GROUP BY 1
         )
         , all_events AS (
