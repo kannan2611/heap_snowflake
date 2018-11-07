@@ -7,6 +7,7 @@ include: "*.view"
 include: "*.dashboard"
 
 explore: all_events {
+  hidden: yes
   join: users {
     type: left_outer
     sql_on: ${all_events.user_id} = ${users.user_id} ;;
@@ -30,9 +31,11 @@ explore: all_events {
     sql_on: ${all_events.unique_event_id} = ${event_flow.unique_event_id} ;;
     relationship: one_to_one
   }
+
 }
 
 explore: sessions {
+  hidden: yes
   join: users {
     type: left_outer
     sql_on: ${sessions.user_id} = ${users.user_id} ;;
@@ -55,6 +58,7 @@ explore: sessions {
 }
 
 explore: funnel_explorer {
+  hidden: yes
   join: sessions {
     type: left_outer
     sql_on: ${funnel_explorer.session_unique_id} = ${sessions.session_unique_id} ;;
