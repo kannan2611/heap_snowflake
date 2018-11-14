@@ -6,6 +6,8 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
+week_start_day: sunday
+
 explore: all_events {
   hidden: yes
   join: users {
