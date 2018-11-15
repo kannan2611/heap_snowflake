@@ -1,4 +1,5 @@
 view: users {
+<<<<<<< HEAD
   sql_table_name: main_production.users ;;
 
   dimension: user_id {
@@ -2390,5 +2391,34 @@ view: users {
       support_page_support_email_us.count,
       support_page_support_live_chat.count
     ]
+=======
+  sql_table_name: heap.users ;;
+
+  dimension: user_id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: identity {
+    sql: ${TABLE}."identity" ;;
+  }
+
+  dimension_group: joindate {
+    type: time
+    timeframes: [time, date, week, month]
+    sql: ${TABLE}.joindate ;;
+  }
+
+  measure: count {
+    hidden: yes
+    type: count
+    drill_fields: [detail*]
+  }
+
+  # ----- Sets of fields for drilling ------
+  set: detail {
+    fields: [user_id, identity, sessions.count, joindate_date]
+>>>>>>> branch 'master' of https://github.com/kannan2611/heap_snowflake.git
   }
 }
